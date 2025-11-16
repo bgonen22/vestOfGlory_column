@@ -134,11 +134,11 @@ void calculateVestPath(int startLed, int startX, int startY, bool mirror = false
 void setup() { 
 	Serial.begin(57600);
 	Serial.println("resetting");
-	LEDS.addLeds<NEOPIXEL,LEFT_FRONT_PIN>(leds, LEDS_PER_STRIP);
-	LEDS.addLeds<NEOPIXEL,RIGHT_FRONT_PIN>(&leds[LEDS_PER_STRIP], LEDS_PER_STRIP);
-	LEDS.addLeds<NEOPIXEL, LEFT_REAR_PIN>(&leds[LEDS_PER_STRIP*2], LEDS_BACK_LEFT);
-	LEDS.addLeds<NEOPIXEL, RIGHT_REAR_PIN>(&leds[LEDS_PER_STRIP*2 + LEDS_BACK_LEFT], LEDS_BACK_RIGHT);
-	LEDS.setBrightness(0);
+	FastLED.addLeds<NEOPIXEL,LEFT_FRONT_PIN>(leds, LEDS_PER_STRIP);
+	FastLED.addLeds<NEOPIXEL,RIGHT_FRONT_PIN>(&leds[LEDS_PER_STRIP], LEDS_PER_STRIP);
+	FastLED.addLeds<NEOPIXEL, LEFT_REAR_PIN>(&leds[LEDS_PER_STRIP*2], LEDS_BACK_LEFT);
+	FastLED.addLeds<NEOPIXEL, RIGHT_REAR_PIN>(&leds[LEDS_PER_STRIP*2 + LEDS_BACK_LEFT], LEDS_BACK_RIGHT);
+	FastLED.setBrightness(0);
 
 	calculateVestPath(0, 0, 0, false);
 	calculateVestPath(100, 8, 0, true);
@@ -387,7 +387,7 @@ void loop() {
 	static uint8_t hue = 0;
 	Serial.print("x");
 	long time = millis() - startTime;
-	LEDS.setBrightness(time < 15000 ? time / 500.f : 60);
+	FastLED.setBrightness(time < 15000 ? time / 500.f : 60);
 	//fire.update();
 	//fire.draw();
 	palPlasma.update();
