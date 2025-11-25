@@ -20,7 +20,7 @@ int ledY[LEDS_PER_STRIP * 4];
 // static const int skipPerRow[] = {4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, -1, 1, 0, 1};
 
 static const int MAX_LEDS_PER_ROW_FRONT = 21;
-static const int ledsPerColumn[] = {10, 11, 21, 21, 21, 21, 21, 19, 18, 16};
+static const int ledsPerColumn[] = {16, 18, 19, 21, 21, 21, 21, 21, 11, 10};
 static const int skipPerColumn[] = {0,  0,  0,  0,  0,  0,  0,  0,  0,  0};
 
 static const int MAX_LEDS_PER_ROW_BACK = 6;
