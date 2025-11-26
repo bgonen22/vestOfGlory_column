@@ -56,7 +56,7 @@ public:
 			y += direction*skipPerColumn[col];
 			for (int i = 0; i < ledsPerColumn[col]; i++) {
 				leds[led] = instance.pixel(x,y,t);
-				led++;
+				led--;
 				// y += direction;
 				y -= direction;
 			}
@@ -93,8 +93,8 @@ public:
 
 	static void drawFront(T& instance) {
 		long time = (millis() - startTime);
-		drawFrontPart(instance, 0, 0, 0, false, time);
-		drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
+		drawFrontPart(instance, LEDS_PER_STRIP, 0, 0, false, time);
+		// drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
 	}
 	static void drawBack(T& instance) {
 		long time = (millis() - startTime);
@@ -137,8 +137,8 @@ private:
 	long lastTime;
 public:
 	CRGB pixel(int x, int y, int t) {
-		byte index = (sin16(sin16(x*371)+sin16(y*139) +32767*2 + t*7) + 32767) >> 8 ;
-		byte brightness = (sin16(sin16(x*197)+sin16(y*191) +32767*2 + t*5) + 32767) >> 8;
+		byte index = (sin16(sin16(x*139)+sin16(y*371) +32767*2 + t*7) + 32767) >> 8 ;
+		byte brightness = (sin16(sin16(x*191)+sin16(y*197) +32767*2 + t*5) + 32767) >> 8;
 		return ColorFromPalette(current, index, qsub8(brightness, 40));
 	}
 
