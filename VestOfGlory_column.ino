@@ -58,9 +58,9 @@ public:
 				leds[led] = instance.pixel(x,y,t);
 				led++;
 				// y += direction;
-				y -= 1;
+				y -= direction;
 			}
-			x += direction;
+			x ++;
 			direction = -1 * direction;
 		}	
 	}
@@ -108,31 +108,6 @@ public:
 };
 
 
-// void calculateVestPath(int startLed, int startX, int startY, bool mirror = false) {
-// 	int led = startLed;
-// 	int x, y;
-// 	x = startX;
-// 	y = startY;
-// 	int direction = 1;
-
-// 	if (mirror) {
-// 		direction = -1;
-// 		x += MAX_LEDS_PER_ROW_FRONT - 1;
-// 	}
-
-// 	for (int row = 0; row < columnCountFront; row++) {
-// 		x += direction*skipPerColumn[row];
-// 		for (int i = 0; i < ledsPerColumn[row]; i++) {
-// 			ledX[led] = x;
-// 			ledY[led] = y;
-// 			led++;
-// 			x += direction;
-// 		}
-// 		y++;
-// 		direction = -1 * direction;
-// 	}	
-// }
-
 
 void setup() { 
 	Serial.begin(57600);
@@ -142,10 +117,6 @@ void setup() {
 	FastLED.addLeds<NEOPIXEL, LEFT_REAR_PIN>(&leds[LEDS_PER_STRIP*2], LEDS_BACK_LEFT);
 	FastLED.addLeds<NEOPIXEL, RIGHT_REAR_PIN>(&leds[LEDS_PER_STRIP*2 + LEDS_BACK_LEFT], LEDS_BACK_RIGHT);
 	FastLED.setBrightness(0);
-
-	// calculateVestPath(0, 0, 0, false);
-	// calculateVestPath(179, 8, 0, true);
-
 	startTime = millis();
 }
 
