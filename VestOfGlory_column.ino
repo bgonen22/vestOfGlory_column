@@ -56,11 +56,11 @@ public:
 			y += direction*skipPerColumn[col];
 			for (int i = 0; i < ledsPerColumn[col]; i++) {
 				leds[led] = instance.pixel(x,y,t);
-				led--;
+				led++;
 				// y += direction;
 				y -= direction;
 			}
-			x ++;
+			x --;
 			direction = -1 * direction;
 		}	
 	}
@@ -93,8 +93,8 @@ public:
 
 	static void drawFront(T& instance) {
 		long time = (millis() - startTime);
-		drawFrontPart(instance, LEDS_PER_STRIP, 0, 0, false, time);
-		// drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
+		drawFrontPart(instance, 0, MAX_LEDS_PER_ROW_FRONT+1, 0, false, time);
+		drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
 	}
 	static void drawBack(T& instance) {
 		long time = (millis() - startTime);
