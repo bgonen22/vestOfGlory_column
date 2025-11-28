@@ -21,7 +21,7 @@ int ledY[LEDS_PER_STRIP * 4];
 
 static const int MAX_LEDS_PER_ROW_FRONT = 21;
 static const int ledsPerColumn[] = {16, 18, 19, 21, 21, 21, 21, 21, 11, 10};
-static const int skipPerColumn[] = {0,  0,  0,  0,  0,  0,  0,  0,  0,  0};
+static const int skipPerColumn[] = {0,  0,  0,  0,  0,  0,  0,  0,  10,  11};
 
 static const int MAX_LEDS_PER_ROW_BACK = 6;
 static const int ledsPerRowBackLeft[] = {4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 6, 6}; // total 84 LEDs
@@ -94,7 +94,7 @@ public:
 	static void drawFront(T& instance) {
 		long time = (millis() - startTime);
 		drawFrontPart(instance, 0, MAX_LEDS_PER_ROW_FRONT+1, 0, false, time);
-		drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
+		// drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
 	}
 	static void drawBack(T& instance) {
 		long time = (millis() - startTime);
