@@ -21,7 +21,7 @@ int ledY[LEDS_PER_STRIP * 4];
 
 static const int MAX_LEDS_PER_ROW_FRONT = 21;
 static const int ledsPerColumn[] = {16, 18, 19, 21, 21, 21, 21, 21, 11, 10};
-static const int skipPerColumn[] = {0,  0,  0,  0,  0,  0,  0,  0,  -16,  -2};
+static const int skipPerColumn[] = {0,  0,  0,  0,  0,  0,  0,  0,  -10,  -2};
 
 static const int MAX_LEDS_PER_ROW_BACK = 6;
 static const int ledsPerRowBackLeft[] = {4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 6, 6}; // total 84 LEDs
@@ -138,7 +138,7 @@ private:
 public:
 	CRGB pixel(int x, int y, int t) {
 		byte index = (sin16(sin16(x*139)+sin16(y*371) +32767*2 + t*7) + 32767) >> 8 ;
-		byte brightness = (sin16(sin16(x*197)+sin16(y*191) +32767*2 + t*5) + 32767) >> 8;
+		byte brightness = (sin16(sin16(x*400)+sin16(y*380) +32767*2 + t*5) + 32767) >> 8;
 		return ColorFromPalette(current, index, qsub8(brightness, 40));
 	}
 
