@@ -94,7 +94,7 @@ public:
 	static void drawFront(T& instance) {
 		long time = (millis() - startTime);
 		drawFrontPart(instance, 0, MAX_LEDS_PER_ROW_FRONT+1, 0, false, time);
-		// drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
+		//drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
 	}
 	static void drawBack(T& instance) {
 		long time = (millis() - startTime);
@@ -120,12 +120,6 @@ void setup() {
 	startTime = millis();
 }
 
-void outlineRandomAmplitude(uint16_t delta) {
-	// elapsed time
-	static uint16_t time = 0;
-	time += delta;
-	//for(int i = 0; i < )
-}
 
 
 class PalettedPlasma {
@@ -138,8 +132,8 @@ private:
 public:
 	CRGB pixel(int x, int y, int t) {
 		byte index = (sin16(sin16(x*139)+sin16(y*371) +32767*2 + t*7) + 32767) >> 8 ;
-		byte brightness = (sin16(sin16(x*400)+sin16(y*380) +32767*2 + t*5) + 32767) >> 8;
-		return ColorFromPalette(current, index, qsub8(brightness, 40));
+		byte brightness = (sin16(sin16(x*191)+sin16(y*197) +32767*2 + t*16) + 32767) >> 8;
+		return ColorFromPalette(current, index, qsub8(brightness, 10));
 	}
 
 	PalettedPlasma() {
