@@ -7,13 +7,12 @@
 #define LEDS_PER_STRIP 179
 #define LEFT_FRONT_PIN 13
 #define RIGHT_FRONT_PIN 14
-#define LEFT_REAR_PIN 11
-#define RIGHT_REAR_PIN 12
+// #define LEFT_REAR_PIN 11
+// #define RIGHT_REAR_PIN 12
 
 // Define the array of leds
-CRGB leds[LEDS_PER_STRIP * 4];
-int ledX[LEDS_PER_STRIP * 4];
-int ledY[LEDS_PER_STRIP * 4];
+// CRGB leds[LEDS_PER_STRIP * 4];
+CRGB leds[LEDS_PER_STRIP * 2]; // no rear stripts
 
 // static const int MAX_LEDS_PER_ROW_FRONT = 7;
 // static const int ledsPerRow[] = {3, 7, 7, 7, 7, 7, 7, 7, 7, 6, 5, 5, 4, 4, 5, 4, 4, 4};
@@ -23,17 +22,17 @@ static const int MAX_LEDS_PER_ROW_FRONT = 21;
 static const int ledsPerColumn[] = {16, 18, 19, 21, 21, 21, 21, 21, 11, 10};
 static const int skipPerColumn[] = {0,  0,  0,  0,  0,  0,  0,  0,  -10,  -2};
 
-static const int MAX_LEDS_PER_ROW_BACK = 6;
-static const int ledsPerRowBackLeft[] = {4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 6, 6}; // total 84 LEDs
-static const int skipPerRowBackLeft[] = {0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0};
-static const int ledsPerRowBackRight[] = {4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6};
-static const int skipPerRowBackRight[] = {0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0};
+// static const int MAX_LEDS_PER_ROW_BACK = 6;
+// static const int ledsPerRowBackLeft[] = {4, 4, 4, 4, 4, 5, 5, 5, 6, 6, 5, 5, 5, 5, 5, 6, 6}; // total 84 LEDs
+// static const int skipPerRowBackLeft[] = {0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0};
+// static const int ledsPerRowBackRight[] = {4, 4, 4, 4, 4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 6};
+// static const int skipPerRowBackRight[] = {0, 0, 0, 0, 0, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, 0};
 
 static const int columnCountFront = sizeof(ledsPerColumn)/sizeof(ledsPerColumn[0]);
-static const int rowCountBack = sizeof(ledsPerRowBackLeft)/sizeof(ledsPerRowBackLeft[0]);
+// static const int rowCountBack = sizeof(ledsPerRowBackLeft)/sizeof(ledsPerRowBackLeft[0]);
 
-static const int LEDS_BACK_LEFT = 84;
-static const int LEDS_BACK_RIGHT = 81;
+// static const int LEDS_BACK_LEFT = 84;
+// static const int LEDS_BACK_RIGHT = 81;
 
 long startTime;
 
@@ -94,7 +93,7 @@ public:
 	static void drawFront(T& instance) {
 		long time = (millis() - startTime);
 		drawFrontPart(instance, 0, MAX_LEDS_PER_ROW_FRONT+1, 0, false, time);
-		//drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
+		drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
 	}
 	static void drawBack(T& instance) {
 		long time = (millis() - startTime);
@@ -103,7 +102,7 @@ public:
 	}
 	static void draw(T& instance) {
 		drawFront(instance);
-		drawBack(instance);
+		// drawBack(instance);
 	}
 };
 
@@ -114,8 +113,8 @@ void setup() {
 	Serial.println("resetting");
 	FastLED.addLeds<NEOPIXEL,LEFT_FRONT_PIN>(leds, LEDS_PER_STRIP);
 	FastLED.addLeds<NEOPIXEL,RIGHT_FRONT_PIN>(&leds[LEDS_PER_STRIP], LEDS_PER_STRIP);
-	FastLED.addLeds<NEOPIXEL, LEFT_REAR_PIN>(&leds[LEDS_PER_STRIP*2], LEDS_BACK_LEFT);
-	FastLED.addLeds<NEOPIXEL, RIGHT_REAR_PIN>(&leds[LEDS_PER_STRIP*2 + LEDS_BACK_LEFT], LEDS_BACK_RIGHT);
+	// FastLED.addLeds<NEOPIXEL, LEFT_REAR_PIN>(&leds[LEDS_PER_STRIP*2], LEDS_BACK_LEFT);
+	// FastLED.addLeds<NEOPIXEL, RIGHT_REAR_PIN>(&leds[LEDS_PER_STRIP*2 + LEDS_BACK_LEFT], LEDS_BACK_RIGHT);
 	FastLED.setBrightness(0);
 	startTime = millis();
 }
