@@ -64,29 +64,29 @@ public:
 		}	
 	}
 
-	static void drawBackPart(T& instance, const int *ledCounts, const int *skipCounts, int startLed, int startX, int startY, bool mirror = false, int t = 0) {
-		int led = startLed;
-		int x, y;
-		x = startX;
-		y = startY;
-		int direction = 1;
+	// static void drawBackPart(T& instance, const int *ledCounts, const int *skipCounts, int startLed, int startX, int startY, bool mirror = false, int t = 0) {
+	// 	int led = startLed;
+	// 	int x, y;
+	// 	x = startX;
+	// 	y = startY;
+	// 	int direction = 1;
 
-		if (mirror) {
-			direction = -1;
-			x += MAX_LEDS_PER_ROW_BACK - 1;
-		}
+	// 	if (mirror) {
+	// 		direction = -1;
+	// 		x += MAX_LEDS_PER_ROW_BACK - 1;
+	// 	}
 
-		for (int row = 0; row < rowCountBack; row++) {
-			x += direction*skipCounts[row];
-			for (int i = 0; i < ledCounts[row]; i++) {
-				leds[led] = instance.pixel(x,y,t);
-				led++;
-				x += direction;
-			}
-			y++;
-			direction = -1 * direction;
-		}	
-	}
+	// 	for (int row = 0; row < rowCountBack; row++) {
+	// 		x += direction*skipCounts[row];
+	// 		for (int i = 0; i < ledCounts[row]; i++) {
+	// 			leds[led] = instance.pixel(x,y,t);
+	// 			led++;
+	// 			x += direction;
+	// 		}
+	// 		y++;
+	// 		direction = -1 * direction;
+	// 	}	
+	// }
 
 
 
@@ -95,11 +95,11 @@ public:
 		drawFrontPart(instance, 0, MAX_LEDS_PER_ROW_FRONT+1, 0, false, time);
 		drawFrontPart(instance, LEDS_PER_STRIP, MAX_LEDS_PER_ROW_FRONT+1, 0, true, time);
 	}
-	static void drawBack(T& instance) {
-		long time = (millis() - startTime);
-		drawBackPart(instance, ledsPerRowBackLeft, skipPerRowBackLeft, LEDS_PER_STRIP*2, 0, 0, true, time);
-		drawBackPart(instance, ledsPerRowBackRight, skipPerRowBackRight, LEDS_PER_STRIP*2 + LEDS_BACK_LEFT, MAX_LEDS_PER_ROW_BACK, 0, false, time);
-	}
+	// static void drawBack(T& instance) {
+	// 	long time = (millis() - startTime);
+	// 	drawBackPart(instance, ledsPerRowBackLeft, skipPerRowBackLeft, LEDS_PER_STRIP*2, 0, 0, true, time);
+	// 	drawBackPart(instance, ledsPerRowBackRight, skipPerRowBackRight, LEDS_PER_STRIP*2 + LEDS_BACK_LEFT, MAX_LEDS_PER_ROW_BACK, 0, false, time);
+	// }
 	static void draw(T& instance) {
 		drawFront(instance);
 		// drawBack(instance);
